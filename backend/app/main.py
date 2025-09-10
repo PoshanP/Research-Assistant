@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.api.routes import rag_routes
+from app.api.routes import rag_routes, chat
 import logging
 
 logging.basicConfig(
@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
+    description="Backend API for Research Assistant RAG Application",
     openapi_url=f"{settings.API_V1_STR}/openapi.json"
 )
 
@@ -26,6 +27,7 @@ app.add_middleware(
 )
 
 app.include_router(rag_routes.router, prefix=settings.API_V1_STR)
+app.include_router(chat.router, prefix="/api/chat", tags=["chat"])
 
 
 @app.get("/")

@@ -18,8 +18,9 @@ api.interceptors.response.use(
 );
 
 export default {
+  // Document/RAG endpoints
   uploadDocument: (formData, config = {}) => {
-    return api.post('/documents/upload', formData, {
+    return api.post('/v1/rag/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -27,18 +28,45 @@ export default {
     });
   },
 
-  sendMessage: (documentId, message) => {
-    return api.post('/chat', {
-      document_id: documentId,
+  // Chat endpoints
+  sendMessage: (message, sessionId = null) => {
+    return api.post('/chat/message', {
       message: message,
+      session_id: sessionId,
+      context: []
     });
   },
 
-  getDocument: (documentId) => {
-    return api.get(`/documents/${documentId}`);
+  getSessions: () => {
+    return api.get('/chat/sessions');
   },
 
-  deleteDocument: (documentId) => {
-    return api.delete(`/documents/${documentId}`);
+  getSession: (sessionId) => {
+    return api.get(`/chat/sessions/${sessionId}`);
   },
+
+  deleteSession: (sessionId) => {
+    return api.delete(`/chat/sessions/${sessionId}`);
+  },
+
+  clearSession: (sessionId) => {
+    return api.post(`/chat/sessions/${sessionId}/clear`);
+  },
+
+  // RAG query endpoint
+  queryDocuments: (query, sessionId) => {
+    return api.post('/v1/rag/query', {
+      collection_id: sessionId,
+      query: query
+    });
+  },
+
+  // Collection management
+  deleteCollection: (collectionId) => {
+    return api.delete(`/v1/rag/collection/${collectionId}`);
+  },
+
+  getCollectionInfo: (collectionId) => {
+    return api.get(`/v1/rag/collection/${collectionId}/info`);
+  }
 };

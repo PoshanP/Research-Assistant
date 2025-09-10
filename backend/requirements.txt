@@ -1,38 +1,35 @@
-# FastAPI and server
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-python-dotenv==1.0.0
+# FastAPI and server (Latest as of September 2025)
+fastapi[standard]
+uvicorn[standard]==0.35.0
+python-multipart
+python-dotenv
 
-# LangChain and RAG components
-langchain==0.1.0
-langchain-community==0.1.0
-langchain-openai==0.0.5
-chromadb==0.4.22
-openai==1.6.1
+# LangChain and RAG components (Latest as of September 2025)
+langchain==0.3.27
+langchain-community==0.3.29
+langchain-openai
+langchain-core
+chromadb==1.0.20
+openai==1.107.0
 
 # Document processing
-pymupdf==1.23.8
-pypdf==3.17.4
-unstructured==0.11.0
-python-magic==0.4.27
+pymupdf
+pypdf
+python-magic
 
 # Data processing
-numpy==1.24.3
-pandas==2.0.3
-tiktoken==0.5.2
+numpy
+pandas
+tiktoken
 
 # Async support
-aiofiles==23.2.1
-
-# CORS support
-fastapi-cors==0.0.6
+aiofiles
 
 # Testing
-pytest==7.4.3
-pytest-asyncio==0.21.1
-httpx==0.25.2
+pytest
+pytest-asyncio
+httpx
 
 # Type checking
-pydantic==2.5.2
-pydantic-settings==2.1.0
+pydantic
+pydantic-settings

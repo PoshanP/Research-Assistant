@@ -62,12 +62,14 @@ const ChatPage = () => {
     });
 
     try {
-      const response = await api.sendMessage(document.documentId, userMessage);
+      // Use the document's backend ID as the session ID for chat
+      const sessionId = document.documentId || documentId;
+      const response = await api.sendMessage(userMessage, sessionId);
       
       addMessage(documentId, {
         role: 'assistant',
         content: response.data.response,
-        sources: response.data.sources,
+        sources: response.data.sources || [],
       });
     } catch (error) {
       console.error('Failed to send message:', error);

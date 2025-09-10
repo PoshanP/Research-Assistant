@@ -72,7 +72,7 @@ const PDFUploader = () => {
       setUploadStatus('success');
 
       setTimeout(() => {
-        navigate(`/chat/${newDoc.id}`);
+        navigate('/library');
       }, 1500);
 
     } catch (err) {
